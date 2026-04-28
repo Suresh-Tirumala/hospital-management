@@ -1,0 +1,552 @@
+﻿
+System.Management.Automati
+on.RemoteException
+[INFO] Building Hospital 
+Management System Backend 
+1.0.0
+2026-03-28T21:38:04.189+05
+:30 ERROR 50428 --- [     
+      main] com.zaxxer.hik
+ari.pool.HikariPool       
+ : HikariPool-1 - 
+Exception during pool 
+initialization.
+com.mysql.cj.jdbc.exceptio
+ns.CommunicationsException
+: Communications link 
+failure
+	at com.mysql.cj.jdbc.exce
+ptions.SQLError.createComm
+unicationsException(SQLErr
+or.java:174) ~[mysql-conne
+ctor-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exce
+ptions.SQLExceptionsMappin
+g.translateException(SQLEx
+ceptionsMapping.java:64) ~
+[mysql-connector-j-8.3.0.j
+ar:8.3.0]
+	at org.hibernate.boot.mod
+el.process.spi.MetadataBui
+ldingProcess.complete(Meta
+dataBuildingProcess.java:1
+70) ~[hibernate-core-6.4.4
+.Final.jar:6.4.4.Final]
+	at org.hibernate.jpa.boot
+.internal.EntityManagerFac
+toryBuilderImpl.metadata(E
+ntityManagerFactoryBuilder
+Impl.java:1432) ~[hibernat
+e-core-6.4.4.Final.jar:6.4
+.4.Final]
+	at org.hibernate.jpa.boot
+.internal.EntityManagerFac
+toryBuilderImpl.build(Enti
+tyManagerFactoryBuilderImp
+l.java:1503) ~[hibernate-c
+ore-6.4.4.Final.jar:6.4.4.
+Final]
+	at org.springframework.or
+m.jpa.AbstractEntityManage
+rFactoryBean.buildNativeEn
+tityManagerFactory(Abstrac
+tEntityManagerFactoryBean.
+java:409) ~[spring-orm-6.1
+.4.jar:6.1.4]
+Caused by: com.mysql.cj.ex
+ceptions.CJCommunicationsE
+xception: Communications 
+link failure
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:61) ~[mysql-connector
+-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:104) ~[mysql-connecto
+r-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:149) ~[mysql-connecto
+r-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createC
+ommunicationsException(Exc
+eptionFactory.java:165) ~[
+mysql-connector-j-8.3.0.ja
+r:8.3.0]
+Caused by: java.net.Connec
+tException: Connection 
+refused: getsockopt
+java.lang.NullPointerExcep
+tion: Cannot invoke "org.h
+ibernate.engine.jdbc.spi.S
+qlExceptionHelper.convert(
+java.sql.SQLException, 
+String)" because the 
+return value of "org.hiber
+nate.resource.transaction.
+backend.jdbc.internal.Jdbc
+IsolationDelegate.sqlExcep
+tionHelper()" is null
+	at org.hibernate.boot.mod
+el.process.spi.MetadataBui
+ldingProcess.complete(Meta
+dataBuildingProcess.java:1
+70) ~[hibernate-core-6.4.4
+.Final.jar:6.4.4.Final]
+	at org.hibernate.jpa.boot
+.internal.EntityManagerFac
+toryBuilderImpl.metadata(E
+ntityManagerFactoryBuilder
+Impl.java:1432) ~[hibernat
+e-core-6.4.4.Final.jar:6.4
+.4.Final]
+	at org.hibernate.jpa.boot
+.internal.EntityManagerFac
+toryBuilderImpl.build(Enti
+tyManagerFactoryBuilderImp
+l.java:1503) ~[hibernate-c
+ore-6.4.4.Final.jar:6.4.4.
+Final]
+	at org.springframework.or
+m.jpa.AbstractEntityManage
+rFactoryBean.buildNativeEn
+tityManagerFactory(Abstrac
+tEntityManagerFactoryBean.
+java:409) ~[spring-orm-6.1
+.4.jar:6.1.4]
+2026-03-28T21:38:06.251+05
+:30 ERROR 50428 --- [     
+      main] com.zaxxer.hik
+ari.pool.HikariPool       
+ : HikariPool-1 - 
+Exception during pool 
+initialization.
+com.mysql.cj.jdbc.exceptio
+ns.CommunicationsException
+: Communications link 
+failure
+	at com.mysql.cj.jdbc.exce
+ptions.SQLError.createComm
+unicationsException(SQLErr
+or.java:174) ~[mysql-conne
+ctor-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exce
+ptions.SQLExceptionsMappin
+g.translateException(SQLEx
+ceptionsMapping.java:64) ~
+[mysql-connector-j-8.3.0.j
+ar:8.3.0]
+	at org.hibernate.boot.int
+ernal.SessionFactoryBuilde
+rImpl.build(SessionFactory
+BuilderImpl.java:450) ~[hi
+bernate-core-6.4.4.Final.j
+ar:6.4.4.Final]
+	at org.hibernate.jpa.boot
+.internal.EntityManagerFac
+toryBuilderImpl.build(Enti
+tyManagerFactoryBuilderImp
+l.java:1507) ~[hibernate-c
+ore-6.4.4.Final.jar:6.4.4.
+Final]
+	at org.springframework.or
+m.jpa.AbstractEntityManage
+rFactoryBean.buildNativeEn
+tityManagerFactory(Abstrac
+tEntityManagerFactoryBean.
+java:409) ~[spring-orm-6.1
+.4.jar:6.1.4]
+Caused by: com.mysql.cj.ex
+ceptions.CJCommunicationsE
+xception: Communications 
+link failure
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:61) ~[mysql-connector
+-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:104) ~[mysql-connecto
+r-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:149) ~[mysql-connecto
+r-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createC
+ommunicationsException(Exc
+eptionFactory.java:165) ~[
+mysql-connector-j-8.3.0.ja
+r:8.3.0]
+Caused by: java.net.Connec
+tException: Connection 
+refused: getsockopt
+2026-03-28T21:38:06.275+05
+:30  WARN 50428 --- [     
+      main] o.h.engine.jdb
+c.spi.SqlExceptionHelper  
+ : SQL Error: 0, 
+SQLState: 08S01
+2026-03-28T21:38:06.275+05
+:30 ERROR 50428 --- [     
+      main] o.h.engine.jdb
+c.spi.SqlExceptionHelper  
+ : Communications link 
+failure
+2026-03-28T21:38:06.281+05
+:30 ERROR 50428 --- [     
+      main] j.LocalContain
+erEntityManagerFactoryBean
+ : Failed to initialize 
+JPA EntityManagerFactory: 
+[PersistenceUnit: 
+default] Unable to build 
+Hibernate SessionFactory; 
+nested exception is org.hi
+bernate.exception.JDBCConn
+ectionException: Unable 
+to open JDBC Connection 
+for DDL execution 
+[Communications link 
+failure
+2026-03-28T21:38:06.282+05
+:30 ERROR 50428 --- [     
+      main] o.s.b.web.embe
+dded.tomcat.TomcatStarter 
+ : Error starting Tomcat 
+context. Exception: org.sp
+ringframework.beans.factor
+y.UnsatisfiedDependencyExc
+eption. Message: Error 
+creating bean with name 
+'jwtAuthenticationFilter' 
+defined in file 
+[D:\ecommerce\student port
+al\hospital-management-sys
+tem\hms-backend\target\cla
+sses\com\hms\config\JwtAut
+henticationFilter.class]: 
+Unsatisfied dependency 
+expressed through 
+constructor parameter 1: 
+Error creating bean with 
+name 'customUserDetailsSer
+vice' defined in file 
+[D:\ecommerce\student port
+al\hospital-management-sys
+tem\hms-backend\target\cla
+sses\com\hms\service\Custo
+mUserDetailsService.class]
+: Unsatisfied dependency 
+expressed through 
+constructor parameter 0: 
+Error creating bean with 
+name 'userRepository' 
+defined in com.hms.reposit
+ory.UserRepository 
+defined in 
+@EnableJpaRepositories 
+declared on JpaRepositorie
+sRegistrar.EnableJpaReposi
+toriesConfiguration: 
+Cannot resolve reference 
+to bean 'jpaSharedEM_entit
+yManagerFactory' while 
+setting bean property 
+'entityManager'
+2026-03-28T21:38:06.317+05
+:30  WARN 50428 --- [     
+      main] ConfigServletW
+ebServerApplicationContext
+ : Exception encountered 
+during context 
+initialization - 
+cancelling refresh 
+attempt: org.springframewo
+rk.context.ApplicationCont
+extException: Unable to 
+start web server
+Error starting 
+ApplicationContext. To 
+display the condition 
+evaluation report re-run 
+your application with 
+'debug' enabled.
+2026-03-28T21:38:06.344+05
+:30 ERROR 50428 --- [     
+      main] o.s.boot.Sprin
+gApplication              
+ : Application run failed
+org.springframework.contex
+t.ApplicationContextExcept
+ion: Unable to start web 
+server
+Caused by: org.springframe
+work.boot.web.server.WebSe
+rverException: Unable to 
+start embedded Tomcat
+Caused by: org.springframe
+work.beans.factory.Unsatis
+fiedDependencyException: 
+Error creating bean with 
+name 
+'jwtAuthenticationFilter' 
+defined in file 
+[D:\ecommerce\student port
+al\hospital-management-sys
+tem\hms-backend\target\cla
+sses\com\hms\config\JwtAut
+henticationFilter.class]: 
+Unsatisfied dependency 
+expressed through 
+constructor parameter 1: 
+Error creating bean with 
+name 'customUserDetailsSer
+vice' defined in file 
+[D:\ecommerce\student port
+al\hospital-management-sys
+tem\hms-backend\target\cla
+sses\com\hms\service\Custo
+mUserDetailsService.class]
+: Unsatisfied dependency 
+expressed through 
+constructor parameter 0: 
+Error creating bean with 
+name 'userRepository' 
+defined in com.hms.reposit
+ory.UserRepository 
+defined in 
+@EnableJpaRepositories 
+declared on JpaRepositorie
+sRegistrar.EnableJpaReposi
+toriesConfiguration: 
+Cannot resolve reference 
+to bean 'jpaSharedEM_entit
+yManagerFactory' while 
+setting bean property 
+'entityManager'
+Caused by: org.springframe
+work.beans.factory.Unsatis
+fiedDependencyException: 
+Error creating bean with 
+name 'customUserDetailsSer
+vice' defined in file 
+[D:\ecommerce\student port
+al\hospital-management-sys
+tem\hms-backend\target\cla
+sses\com\hms\service\Custo
+mUserDetailsService.class]
+: Unsatisfied dependency 
+expressed through 
+constructor parameter 0: 
+Error creating bean with 
+name 'userRepository' 
+defined in com.hms.reposit
+ory.UserRepository 
+defined in 
+@EnableJpaRepositories 
+declared on JpaRepositorie
+sRegistrar.EnableJpaReposi
+toriesConfiguration: 
+Cannot resolve reference 
+to bean 'jpaSharedEM_entit
+yManagerFactory' while 
+setting bean property 
+'entityManager'
+Caused by: org.springframe
+work.beans.factory.BeanCre
+ationException: Error 
+creating bean with name 
+'userRepository' defined 
+in com.hms.repository.User
+Repository defined in 
+@EnableJpaRepositories 
+declared on JpaRepositorie
+sRegistrar.EnableJpaReposi
+toriesConfiguration: 
+Cannot resolve reference 
+to bean 'jpaSharedEM_entit
+yManagerFactory' while 
+setting bean property 
+'entityManager'
+Caused by: org.springframe
+work.beans.factory.BeanCre
+ationException: Error 
+creating bean with name 'j
+paSharedEM_entityManagerFa
+ctory': Cannot resolve 
+reference to bean 
+'entityManagerFactory' 
+while setting constructor 
+argument
+Caused by: org.springframe
+work.beans.factory.BeanCre
+ationException: Error 
+creating bean with name 
+'entityManagerFactory' 
+defined in class path 
+resource [org/springframew
+ork/boot/autoconfigure/orm
+/jpa/HibernateJpaConfigura
+tion.class]: 
+[PersistenceUnit: 
+default] Unable to build 
+Hibernate SessionFactory; 
+nested exception is org.hi
+bernate.exception.JDBCConn
+ectionException: Unable 
+to open JDBC Connection 
+for DDL execution 
+[Communications link 
+failure
+Caused by: jakarta.persist
+ence.PersistenceException:
+ [PersistenceUnit: 
+default] Unable to build 
+Hibernate SessionFactory; 
+nested exception is org.hi
+bernate.exception.JDBCConn
+ectionException: Unable 
+to open JDBC Connection 
+for DDL execution 
+[Communications link 
+failure
+	at org.springframework.or
+m.jpa.AbstractEntityManage
+rFactoryBean.buildNativeEn
+tityManagerFactory(Abstrac
+tEntityManagerFactoryBean.
+java:421) ~[spring-orm-6.1
+.4.jar:6.1.4]
+Caused by: org.hibernate.e
+xception.JDBCConnectionExc
+eption: Unable to open 
+JDBC Connection for DDL 
+execution [Communications 
+link failure
+	at org.hibernate.exceptio
+n.internal.SQLStateConvers
+ionDelegate.convert(SQLSta
+teConversionDelegate.java:
+100) ~[hibernate-core-6.4.
+4.Final.jar:6.4.4.Final]
+	at org.hibernate.exceptio
+n.internal.StandardSQLExce
+ptionConverter.convert(Sta
+ndardSQLExceptionConverter
+.java:58) ~[hibernate-core
+-6.4.4.Final.jar:6.4.4.Fin
+al]
+	at org.hibernate.engine.j
+dbc.spi.SqlExceptionHelper
+.convert(SqlExceptionHelpe
+r.java:108) ~[hibernate-co
+re-6.4.4.Final.jar:6.4.4.F
+inal]
+	at org.hibernate.engine.j
+dbc.spi.SqlExceptionHelper
+.convert(SqlExceptionHelpe
+r.java:94) ~[hibernate-cor
+e-6.4.4.Final.jar:6.4.4.Fi
+nal]
+	at org.hibernate.boot.int
+ernal.SessionFactoryBuilde
+rImpl.build(SessionFactory
+BuilderImpl.java:450) ~[hi
+bernate-core-6.4.4.Final.j
+ar:6.4.4.Final]
+	at org.hibernate.jpa.boot
+.internal.EntityManagerFac
+toryBuilderImpl.build(Enti
+tyManagerFactoryBuilderImp
+l.java:1507) ~[hibernate-c
+ore-6.4.4.Final.jar:6.4.4.
+Final]
+	at org.springframework.or
+m.jpa.AbstractEntityManage
+rFactoryBean.buildNativeEn
+tityManagerFactory(Abstrac
+tEntityManagerFactoryBean.
+java:409) ~[spring-orm-6.1
+.4.jar:6.1.4]
+Caused by: com.mysql.cj.jd
+bc.exceptions.Communicatio
+nsException: 
+Communications link 
+failure
+	at com.mysql.cj.jdbc.exce
+ptions.SQLError.createComm
+unicationsException(SQLErr
+or.java:174) ~[mysql-conne
+ctor-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exce
+ptions.SQLExceptionsMappin
+g.translateException(SQLEx
+ceptionsMapping.java:64) ~
+[mysql-connector-j-8.3.0.j
+ar:8.3.0]
+Caused by: com.mysql.cj.ex
+ceptions.CJCommunicationsE
+xception: Communications 
+link failure
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:61) ~[mysql-connector
+-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:104) ~[mysql-connecto
+r-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createE
+xception(ExceptionFactory.
+java:149) ~[mysql-connecto
+r-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exception
+s.ExceptionFactory.createC
+ommunicationsException(Exc
+eptionFactory.java:165) ~[
+mysql-connector-j-8.3.0.ja
+r:8.3.0]
+Caused by: java.net.Connec
+tException: Connection 
+refused: getsockopt
+[INFO] BUILD FAILURE
+[ERROR] Failed to execute 
+goal org.springframework.b
+oot:spring-boot-maven-plug
+in:3.2.3:run 
+(default-cli) on project 
+hms-backend: Process 
+terminated with exit 
+code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full 
+stack trace of the 
+errors, re-run Maven with 
+the -e switch.
+[ERROR] Re-run Maven 
+using the -X switch to 
+enable full debug logging.
+[ERROR] 
+[ERROR] For more 
+information about the 
+errors and possible 
+solutions, please read 
+the following articles:
+[ERROR] [Help 1] http://cw
+iki.apache.org/confluence/
+display/MAVEN/MojoExecutio
+nException
+
+
