@@ -77,6 +77,11 @@ public class Doctor {
     @EqualsAndHashCode.Exclude
     private List<Appointment> appointments;
 
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<MedicalRecord> medicalRecords;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
