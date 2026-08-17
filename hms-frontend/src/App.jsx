@@ -15,6 +15,7 @@ const Bills = lazy(() => import('./pages/Bills'));
 const Users = lazy(() => import('./pages/Users'));
 const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
+const Hero = lazy(() => import('./pages/Hero'));
 const MedicalAssistant = lazy(() => import('./features/ai-assistant/pages/MedicalAssistant'));
 
 const PageLoader = () => (
@@ -27,11 +28,11 @@ function AppRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
+        <Route path="/" element={<Hero />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
         <Route element={<Layout />}>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/patients" element={<Patients />} />
@@ -42,7 +43,7 @@ function AppRoutes() {
         </Route>
 
         <Route path="/ai-assistant" element={<MedicalAssistant />} />
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );
