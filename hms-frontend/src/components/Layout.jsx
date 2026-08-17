@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { Outlet, NavLink, useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import {
   HiOutlineViewGrid, HiOutlineUserGroup, HiOutlineCalendar,
@@ -12,13 +12,17 @@ import { GiBrain } from "react-icons/gi";
 import FloatingAI from "./FloatingAI";
 
 const Layout = () => {
-  const { user, logout, isAdmin } = useAuth();
+  const { user, logout, isAdmin, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
 
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
   const handleLogout = () => {
     logout();
-    navigate("/dashboard");
+    navigate("/login");
   };
 
   const isAdminUser = useMemo(() => isAdmin(), [user]);

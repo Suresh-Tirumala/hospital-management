@@ -9,16 +9,6 @@ export const useAuth = () => {
   return context;
 };
 
-const DEFAULT_USER = {
-  id: 1,
-  token: 'demo-token',
-  username: 'admin',
-  email: 'admin@medicore.com',
-  fullName: 'Admin User',
-  role: 'ADMIN',
-  type: 'Bearer'
-};
-
 const getStoredUser = () => {
   try {
     const stored = localStorage.getItem('hms_user');
@@ -32,15 +22,7 @@ const getStoredUser = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    const stored = getStoredUser();
-    if (!stored) {
-      localStorage.setItem('hms_token', DEFAULT_USER.token);
-      localStorage.setItem('hms_user', JSON.stringify(DEFAULT_USER));
-      return DEFAULT_USER;
-    }
-    return stored;
-  });
+  const [user, setUser] = useState(() => getStoredUser());
   const [loading] = useState(false);
 
   const login = async (credentials) => {

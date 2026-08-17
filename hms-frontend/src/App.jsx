@@ -13,6 +13,8 @@ const Appointments = lazy(() => import('./pages/Appointments'));
 const MedicalRecords = lazy(() => import('./pages/MedicalRecords'));
 const Bills = lazy(() => import('./pages/Bills'));
 const Users = lazy(() => import('./pages/Users'));
+const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
 const MedicalAssistant = lazy(() => import('./features/ai-assistant/pages/MedicalAssistant'));
 
 const PageLoader = () => (
@@ -25,9 +27,11 @@ function AppRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         <Route element={<Layout />}>
+          <Route path="/" element={<Navigate to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/patients" element={<Patients />} />
