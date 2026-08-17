@@ -43,7 +43,6 @@ public class GroqService {
     public GroqService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder
                 .baseUrl(groqApiUrl)
-                .defaultHeader("Authorization", "Bearer " + groqApiKey)
                 .defaultHeader("Content-Type", "application/json")
                 .build();
     }
@@ -72,6 +71,7 @@ public class GroqService {
             
             Map<String, Object> response = webClient.post()
                     .uri("/chat/completions")
+                    .header("Authorization", "Bearer " + groqApiKey)
                     .bodyValue(requestBody)
                     .retrieve()
                     .bodyToMono(Map.class)

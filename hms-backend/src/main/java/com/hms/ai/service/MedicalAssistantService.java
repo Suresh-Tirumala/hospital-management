@@ -155,7 +155,10 @@ public class MedicalAssistantService {
     private String generateAIResponse(List<ChatMessage> history, String userMessage, String context) {
         List<Map<String, String>> conversation = new ArrayList<>();
         
-        for (ChatMessage msg : history) {
+        // Skip the last message (current user message) since we add it explicitly below
+        List<ChatMessage> previousMessages = history.subList(0, Math.max(0, history.size() - 1));
+        
+        for (ChatMessage msg : previousMessages) {
             String role = msg.isFromUser() ? "user" : "assistant";
             conversation.add(Map.of(
                 "role", role,
