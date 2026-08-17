@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import { HiOutlineLockClosed, HiOutlineUser, HiOutlineArrowRight, HiOutlineCheck } from "react-icons/hi";
 
 const Login = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [selectedCred, setSelectedCred] = useState(null);
@@ -16,6 +17,7 @@ const Login = () => {
     try {
       await login(form);
       toast.success("Welcome back!");
+      navigate("/dashboard");
     } catch (err) {
       toast.error(err.response?.data?.message || "Login failed");
     } finally {
