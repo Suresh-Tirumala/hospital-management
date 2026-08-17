@@ -1,13 +1,11 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import { RealTimeProvider } from './context/RealTimeContext';
 import Layout from './components/Layout';
 import './index.css';
 
-const Login = lazy(() => import('./pages/Login'));
-const Register = lazy(() => import('./pages/Register'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Doctors = lazy(() => import('./pages/Doctors'));
 const Patients = lazy(() => import('./pages/Patients'));
@@ -16,7 +14,6 @@ const MedicalRecords = lazy(() => import('./pages/MedicalRecords'));
 const Bills = lazy(() => import('./pages/Bills'));
 const Users = lazy(() => import('./pages/Users'));
 const MedicalAssistant = lazy(() => import('./features/ai-assistant/pages/MedicalAssistant'));
-const Demo = lazy(() => import('./pages/Demo'));
 
 const PageLoader = () => (
   <div className="loading-container">
@@ -24,40 +21,20 @@ const PageLoader = () => (
   </div>
 );
 
-const ProtectedRoute = ({ children, roles }) => {
-  const { user, isAuthenticated, loading } = useAuth();
-  if (loading) return <PageLoader />;
-  if (!isAuthenticated) return <Navigate to="/login" />;
-  if (roles && !roles.includes(user.role)) return <Navigate to="/dashboard" />;
-  return children;
-};
-
 function AppRoutes() {
-  const { isAuthenticated } = useAuth();
-
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
-        <Route path="/" element={<Demo />} />
-        <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login />} />
-        <Route path="/register" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Register />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
 
-        <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+        <Route element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/doctors" element={<Doctors />} />
-          <Route path="/patients" element={
-            <ProtectedRoute roles={['ADMIN', 'DOCTOR', 'RECEPTIONIST', 'PATIENT']}>
-              <Patients />
-            </ProtectedRoute>
-          } />
+          <Route path="/patients" element={<Patients />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/medical-records" element={<MedicalRecords />} />
           <Route path="/bills" element={<Bills />} />
-          <Route path="/users" element={
-            <ProtectedRoute roles={['ADMIN']}>
-              <Users />
-            </ProtectedRoute>
-          } />
+          <Route path="/users" element={<Users />} />
         </Route>
 
         <Route path="/ai-assistant" element={<MedicalAssistant />} />
