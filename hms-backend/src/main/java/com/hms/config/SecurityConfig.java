@@ -79,6 +79,7 @@ public class SecurityConfig {
             .toList());
         origins.add("https://hospital-management-six-ochre.vercel.app");
         origins.add("https://hospital-management-beta-ten.vercel.app");
+        origins.add("https://medicorehms1.netlify.app");
         origins.add("https://hospital-management-i8qpxpapl-suresh-tirumalas-projects.vercel.app");
 
         CorsConfiguration configuration = new CorsConfiguration();
