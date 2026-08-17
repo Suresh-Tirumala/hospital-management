@@ -1,0 +1,7 @@
+node_modules
+hms-frontend/node_modules
+hms-frontend/dist
+hms-backend/target
+.git
+.env
+*.md
