@@ -18,7 +18,7 @@ const Layout = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/dashboard");
   };
 
   const isAdminUser = useMemo(() => isAdmin(), [user]);

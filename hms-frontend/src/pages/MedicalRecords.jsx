@@ -99,9 +99,7 @@ const MedicalRecords = () => {
     <>
       <div className="top-header">
         <h1 className="page-title">Medical Records</h1>
-        {isDoctor() && (
-          <button className="btn btn-primary" onClick={openCreate}><HiOutlinePlus /> Create Record</button>
-        )}
+        <button className="btn btn-primary" onClick={openCreate}><HiOutlinePlus /> Create Record</button>
       </div>
 
       <div className="page-container">

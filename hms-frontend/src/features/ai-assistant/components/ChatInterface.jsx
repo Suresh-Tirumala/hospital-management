@@ -5,12 +5,10 @@ import { useChat } from '../hooks/useChat';
 import MessageBubble from './MessageBubble';
 import ChatSidebar from './ChatSidebar';
 import TypingIndicator from './TypingIndicator';
-import SuggestedPrompts from './SuggestedPrompts';
 import '../styles/chat.css';
 
 export default function ChatInterface() {
   const [inputValue, setInputValue] = useState('');
-  const [isRehabilitationMode, setIsRehabilitationMode] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const messagesEndRef = useRef(null);
@@ -40,7 +38,7 @@ export default function ChatInterface() {
     if (!inputValue.trim() || isSending) return;
     const content = inputValue.trim();
     setInputValue('');
-    await sendMessage(content, { includeRehabilitation: isRehabilitationMode });
+    await sendMessage(content);
   };
 
   const handleKeyDown = (e) => {
@@ -57,13 +55,12 @@ export default function ChatInterface() {
 
   const handleSuggestedPrompt = async (prompt) => {
     setInputValue(prompt);
-    await sendMessage(prompt, { includeRehabilitation: isRehabilitationMode });
+    await sendMessage(prompt);
     setInputValue('');
   };
 
   return (
     <div className="chat-interface">
-      {/* Mobile toggle */}
       <button 
         className="mobile-sidebar-toggle"
         onClick={() => setShowMobileSidebar(!showMobileSidebar)}
@@ -72,17 +69,13 @@ export default function ChatInterface() {
         <FiMessageSquare />
       </button>
 
-      {/* Sidebar */}
       <ChatSidebar 
         showSidebar={showSidebar} 
         showMobileSidebar={showMobileSidebar}
         onCloseMobile={() => setShowMobileSidebar(false)}
       />
 
-      {/* Main chat area */}
       <div className={`chat-main ${showSidebar ? '' : 'full-width'}`}>
-
-        {/* Messages */}
         <div className="chat-messages">
           {!currentSession && messages.length === 0 ? (
             <div className="welcome-screen">
@@ -90,16 +83,11 @@ export default function ChatInterface() {
                 <MdHealthAndSafety />
               </div>
               <h3>Welcome to Medical Assistant</h3>
-              <p>Your AI-powered healthcare education companion</p>
-              
+              <p>Ask about medical conditions, treatments, or health topics</p>
               <div className="capabilities">
                 <div className="capability">
                   <span className="cap-icon">📚</span>
                   <span>Medical Education</span>
-                </div>
-                <div className="capability">
-                  <span className="cap-icon">🦴</span>
-                  <span>Rehabilitation Guidance</span>
                 </div>
                 <div className="capability">
                   <span className="cap-icon">💊</span>
@@ -110,8 +98,6 @@ export default function ChatInterface() {
                   <span>Health & Wellness</span>
                 </div>
               </div>
-
-              <SuggestedPrompts onSelect={handleSuggestedPrompt} />
             </div>
           ) : (
             <>
@@ -124,24 +110,14 @@ export default function ChatInterface() {
           )}
         </div>
 
-        {/* Input area — always visible (creates a session on first send) */}
         <div className="chat-input-container">
-          {isRehabilitationMode && (
-            <div className="rehab-mode-banner">
-              🦾 Rehabilitation mode active — responses will include exercise guidance & recovery tips
-            </div>
-          )}
           <div className="input-wrapper">
             <textarea
               ref={inputRef}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder={
-                isRehabilitationMode
-                  ? 'Ask about exercises, recovery, or rehabilitation...'
-                  : 'Ask about medical conditions, treatments, or health topics...'
-              }
+              placeholder="Ask about medical conditions, treatments, or health topics..."
               disabled={isSending}
               rows={1}
             />
@@ -164,7 +140,7 @@ export default function ChatInterface() {
             </div>
           </div>
           <p className="input-disclaimer">
-            🔒 AI assistant for educational purposes only. Always consult a licensed healthcare professional for medical advice.
+            AI assistant for educational purposes only. Always consult a licensed healthcare professional for medical advice.
           </p>
         </div>
       </div>

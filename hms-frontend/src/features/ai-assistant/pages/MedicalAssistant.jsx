@@ -1,7 +1,5 @@
 import React, { Suspense } from 'react';
-import { MdHealthAndSafety, MdAutoAwesome } from 'react-icons/md';
-import { GiBrain } from 'react-icons/gi';
-import { FiZap } from 'react-icons/fi';
+import { MdHealthAndSafety } from 'react-icons/md';
 import ChatInterface from '../components/ChatInterface';
 import '../styles/chat.css';
 
@@ -24,19 +22,8 @@ export default function MedicalAssistantPage() {
           </div>
           <div className="assistant-brand-text">
             <h1>Medical AI Assistant</h1>
-            <p>Powered by advanced healthcare AI for education & rehabilitation guidance</p>
+            <p>Ask about medical conditions, treatments, or health topics</p>
           </div>
-        </div>
-        <div className="assistant-header-badges">
-          <span className="ai-badge ai-badge-blue">
-            <GiBrain /> Medical Knowledge
-          </span>
-          <span className="ai-badge ai-badge-green">
-            <FiZap /> Real-time Responses
-          </span>
-          <span className="ai-badge ai-badge-purple">
-            <MdAutoAwesome /> AI Powered
-          </span>
         </div>
       </div>
 

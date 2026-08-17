@@ -16,7 +16,7 @@ export default function ChatSidebar({ showSidebar, showMobileSidebar, onCloseMob
   const handleNewSession = async (type) => {
     setIsCreating(true);
     try {
-      await createSession(type, type === 'REHABILITATION' ? 'Rehabilitation Chat' : 'New Chat');
+      await createSession('GENERAL', 'New Chat');
     } finally {
       setIsCreating(false);
     }
@@ -81,14 +81,6 @@ export default function ChatSidebar({ showSidebar, showMobileSidebar, onCloseMob
             style={{ flex: 1, padding: '10px', borderRadius: '10px', background: '#3b82f6', color: 'white', border: 'none', fontWeight: '600', fontSize: '13px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
           >
             <FiPlus /> New Chat
-          </button>
-          <button 
-            className="new-session-btn secondary"
-            onClick={() => handleNewSession('REHABILITATION')}
-            disabled={isCreating}
-            style={{ flex: 1, padding: '10px', borderRadius: '10px', background: '#fef3c7', color: '#92400e', border: '1px solid #fcd34d', fontWeight: '600', fontSize: '13px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-          >
-            🦾 Rehab
           </button>
         </div>
 
