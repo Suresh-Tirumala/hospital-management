@@ -18,8 +18,8 @@ export const RealTimeProvider = ({ children }) => {
     if (typeof window === 'undefined') return;
 
     const client = new Client({
-      brokerURL: 'ws://localhost:8081/api/ws-hms', // WebSockets usually don't need SockJS if using modern client, but let's see
-      webSocketFactory: () => new SockJS('http://localhost:8081/api/ws-hms'),
+      brokerURL: `${import.meta.env.VITE_API_URL || 'http://localhost:8081/api/'}ws-hms`.replace('http', 'ws'),
+      webSocketFactory: () => new SockJS(`${import.meta.env.VITE_API_URL || 'http://localhost:8081/api/'}ws-hms`),
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
