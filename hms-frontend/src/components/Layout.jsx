@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Outlet, NavLink, useNavigate, Navigate } from "react-router-dom";
+import { Outlet, NavLink, Link, useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import {
   HiOutlineViewGrid, HiOutlineUserGroup, HiOutlineCalendar,
@@ -42,7 +42,7 @@ const Layout = () => {
   return (
     <div className="app-layout">
       <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
-        <div className="sidebar-brand">
+        <Link to="/" className="sidebar-brand" style={{ textDecoration: 'none', color: 'inherit' }}>
           <div className="brand-icon">H</div>
           {!collapsed && (
             <div>
@@ -50,7 +50,7 @@ const Layout = () => {
               <span>Hospital Management</span>
             </div>
           )}
-        </div>
+        </Link>
 
         <nav className="sidebar-nav">
           {!collapsed && <div className="nav-section-title">Main Menu</div>}
