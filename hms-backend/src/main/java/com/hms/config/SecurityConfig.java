@@ -72,6 +72,7 @@ public class SecurityConfig {
         origins.add("https://hospital-management-beta-ten.vercel.app");
         origins.add("https://medicorehms1.netlify.app");
         origins.add("https://hospital-management-i8qpxpapl-suresh-tirumalas-projects.vercel.app");
+        origins.add("https://hms-frontend-mbt1.onrender.com");
 
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(origins);
