@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import jakarta.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.*;
 
@@ -47,6 +48,12 @@ public class GroqService {
                 .build();
     }
 
+    @PostConstruct
+    public void init() {
+        log.info("GroqService initialized - API key configured: {}, URL: {}, Model: {}",
+                groqApiKey != null && !groqApiKey.isEmpty(), groqApiUrl, defaultModel);
+    }
+
     public String chat(String userMessage) {
         return chat(Collections.singletonList(Map.of("role", "user", "content", userMessage)), null, defaultModel);
     }
@@ -60,6 +67,8 @@ public class GroqService {
     }
 
     public String chat(List<Map<String, String>> conversation, String customSystemPrompt, String model) {
+        log.info("GroqService.chat called, apiKey isEmpty={}", groqApiKey == null || groqApiKey.isEmpty());
+        
         if (groqApiKey == null || groqApiKey.isEmpty()) {
             log.warn("Groq API key not configured, returning fallback response");
             String lastUserMessage = conversation.get(conversation.size() - 1).get("content");
@@ -68,6 +77,7 @@ public class GroqService {
 
         try {
             Map<String, Object> requestBody = buildChatRequest(conversation, customSystemPrompt, model);
+            log.info("Calling Groq API at {}/chat/completions with model={}", groqApiUrl, model);
             
             Map<String, Object> response = webClient.post()
                     .uri("/chat/completions")
@@ -78,10 +88,11 @@ public class GroqService {
                     .timeout(Duration.ofSeconds(30))
                     .block();
             
+            log.info("Groq API response received: {}", response != null ? "success" : "null");
             return extractMessage(response);
             
         } catch (Exception e) {
-            log.error("Groq API call failed: {}", e.getMessage());
+            log.error("Groq API call failed: {}", e.getMessage(), e);
             String lastUserMessage = conversation.get(conversation.size() - 1).get("content");
             return getFallbackResponse(lastUserMessage);
         }
