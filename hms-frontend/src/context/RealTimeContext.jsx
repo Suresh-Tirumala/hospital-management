@@ -18,8 +18,8 @@ export const RealTimeProvider = ({ children }) => {
     if (typeof window === 'undefined') return;
 
     const client = new Client({
-      brokerURL: `${import.meta.env.VITE_API_URL || 'http://localhost:8081/api/'}ws-hms`.replace('http', 'ws'),
-      webSocketFactory: () => new SockJS(`${import.meta.env.VITE_API_URL || 'http://localhost:8081/api/'}ws-hms`),
+      brokerURL: `${import.meta.env.VITE_API_URL || 'https://hospital-management-1-o56v.onrender.com/api/'}ws-hms`.replace('https', 'wss').replace('http', 'ws'),
+      webSocketFactory: () => new SockJS(`${import.meta.env.VITE_API_URL || 'https://hospital-management-1-o56v.onrender.com/api/'}ws-hms`),
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
