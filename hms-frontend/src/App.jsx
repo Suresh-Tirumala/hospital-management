@@ -15,6 +15,8 @@ const Appointments = lazy(() => import('./pages/Appointments'));
 const MedicalRecords = lazy(() => import('./pages/MedicalRecords'));
 const Bills = lazy(() => import('./pages/Bills'));
 const Users = lazy(() => import('./pages/Users'));
+const MedicalAssistant = lazy(() => import('./features/ai-assistant/pages/MedicalAssistant'));
+const Demo = lazy(() => import('./pages/Demo'));
 
 const PageLoader = () => (
   <div className="loading-container">
@@ -36,29 +38,30 @@ function AppRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
-      <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login />} />
-      <Route path="/register" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Register />} />
-      <Route path="/" element={
-        <ProtectedRoute><Layout /></ProtectedRoute>
-      }>
-        <Route index element={<Navigate to="/dashboard" />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="doctors" element={<Doctors />} />
-        <Route path="patients" element={
-          <ProtectedRoute roles={['ADMIN', 'DOCTOR', 'RECEPTIONIST', 'PATIENT']}>
-            <Patients />
-          </ProtectedRoute>
-        } />
-        <Route path="appointments" element={<Appointments />} />
-        <Route path="medical-records" element={<MedicalRecords />} />
-        <Route path="bills" element={<Bills />} />
-        <Route path="users" element={
-          <ProtectedRoute roles={['ADMIN']}>
-            <Users />
-          </ProtectedRoute>
-        } />
-      </Route>
-      <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="/" element={<Demo />} />
+        <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login />} />
+        <Route path="/register" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Register />} />
+
+        <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/patients" element={
+            <ProtectedRoute roles={['ADMIN', 'DOCTOR', 'RECEPTIONIST', 'PATIENT']}>
+              <Patients />
+            </ProtectedRoute>
+          } />
+          <Route path="/appointments" element={<Appointments />} />
+          <Route path="/medical-records" element={<MedicalRecords />} />
+          <Route path="/bills" element={<Bills />} />
+          <Route path="/users" element={
+            <ProtectedRoute roles={['ADMIN']}>
+              <Users />
+            </ProtectedRoute>
+          } />
+        </Route>
+
+        <Route path="/ai-assistant" element={<MedicalAssistant />} />
+        <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </Suspense>
   );

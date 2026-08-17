@@ -5,8 +5,11 @@ import {
   HiOutlineViewGrid, HiOutlineUserGroup, HiOutlineCalendar,
   HiOutlineDocumentText, HiOutlineCurrencyDollar, HiOutlineCog,
   HiOutlineLogout, HiOutlineUsers, HiOutlineClipboardList,
-  HiOutlineMenuAlt2, HiOutlineChevronLeft, HiOutlineBell, HiOutlineSearch
+  HiOutlineMenuAlt2, HiOutlineChevronLeft, HiOutlineBell, HiOutlineSearch,
+  HiOutlineSparkles
 } from "react-icons/hi";
+import { GiBrain } from "react-icons/gi";
+import FloatingAI from "./FloatingAI";
 
 const Layout = () => {
   const { user, logout, isAdmin } = useAuth();
@@ -56,6 +59,7 @@ const Layout = () => {
             >
               {item.icon}
               {!collapsed && <span>{item.label}</span>}
+              {!collapsed && item.badge && <span className="nav-badge">{item.badge}</span>}
             </NavLink>
           ))}
         </nav>
@@ -109,6 +113,8 @@ const Layout = () => {
           <Outlet />
         </div>
       </main>
+
+      <FloatingAI />
     </div>
   );
 };

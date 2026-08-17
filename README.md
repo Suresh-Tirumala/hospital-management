@@ -1,235 +1,332 @@
-# Hospital Management System (HMS)
+# Hospital Management System
 
-A full-stack hospital management system built with Spring Boot and React for managing patients, doctors, appointments, medical records, and billing.
+A full-stack Hospital Management System for managing hospital operations, patient care workflows, and AI-assisted healthcare education. The project combines a Spring Boot REST API with a React/Vite frontend and includes role-based access for admins, doctors, receptionists, and patients.
+
+## Project Overview
+
+This application is designed as an end-to-end HMS platform. It supports daily hospital administration such as doctor and patient management, appointments, medical records, billing, dashboards, and user access control. It also includes an AI medical assistant module for healthcare education and rehabilitation guidance.
+
+The backend exposes secured REST APIs using JWT authentication and Spring Security. The frontend provides a protected React dashboard experience with route-level permissions, real-time support, charts, and an AI chat assistant.
+
+## Key Features
+
+### Core Hospital Management
+
+- Secure login and registration with JWT authentication.
+- Role-based access control for `ADMIN`, `DOCTOR`, `RECEPTIONIST`, and `PATIENT`.
+- Doctor profile management, specialization lookup, availability, and consultation fee tracking.
+- Patient registration, profile management, and medical history access.
+- Appointment booking, schedule lookup, status updates, and cancellation.
+- Medical record creation and updates for patient visits, notes, and prescriptions.
+- Billing and payment tracking for consultations, treatments, medication, and lab charges.
+- Admin dashboard with hospital statistics and operational summaries.
+- User management for administrators.
+
+### AI and Healthcare Education
+
+- AI medical assistant with chat sessions, message history, educational responses, and rehabilitation guidance.
+- Groq API support as the primary AI provider with OpenAI fallback configuration.
 
 ## Tech Stack
 
 ### Backend
-- **Framework:** Spring Boot 3.2.3
-- **Language:** Java 17+
-- **Database:** H2 (In-memory)
-- **Authentication:** JWT (JSON Web Tokens)
-- **Security:** Spring Security 6
-- **ORM:** Spring Data JPA / Hibernate
-- **API Documentation:** SpringDoc OpenAPI (Swagger)
-- **Real-time:** WebSocket (STOMP)
+
+- Java 17
+- Spring Boot 3.2.3
+- Spring Security 6
+- Spring Data JPA / Hibernate
+- H2 in-memory database
+- JWT with `jjwt`
+- Spring WebSocket
+- Spring WebFlux WebClient
+- Spring AI OpenAI starter
+- SpringDoc OpenAPI / Swagger UI
+- MapStruct
+- Lombok
+- Maven Wrapper
 
 ### Frontend
-- **Framework:** React 19
-- **Build Tool:** Vite 8
-- **Routing:** React Router DOM 7
-- **HTTP Client:** Axios
-- **Charts:** Recharts
-- **Icons:** React Icons (Heroicons)
-- **Styling:** Custom CSS with Modern UI
 
-## Features
-
-### Authentication
-- JWT-based authentication
-- Role-based access control (ADMIN, DOCTOR, RECEPTIONIST, PATIENT)
-- Secure password hashing with BCrypt
-
-### User Management
-- User registration and login
-- Role-based permissions
-- Account status management
-
-### Doctor Management
-- Doctor profiles with specialization
-- Availability scheduling
-- Consultation fee tracking
-
-### Patient Management
-- Patient registration
-- Medical history tracking
-- Personal information management
-- Patient list accessible to Admin only
-
-### Appointments
-- Online appointment booking
-- Appointment status tracking (SCHEDULED, CONFIRMED, COMPLETED, CANCELLED)
-- Doctor availability checking
-
-### Medical Records
-- Doctor notes and prescriptions
-- Patient medical history
-- Record management by authorized staff
-
-### Billing
-- Bill generation for appointments
-- Multiple charge categories (consultation, treatment, medication, lab tests)
-- Payment tracking
-- Payment history
-
-### Dashboard
-- Dashboard with statistics
-- Revenue analysis
-- Appointment trends
+- React 18
+- Vite 8
+- React Router DOM 7
+- Axios
+- React Hot Toast
+- Recharts
+- React Icons
+- React Markdown with GFM
+- STOMP and SockJS clients
+- Custom CSS modules by feature
 
 ## Project Structure
 
-```
+```text
 hospital-management-system/
-├── hms-backend/              # Spring Boot Backend
-│   ├── src/main/java/com/hms/
-│   │   ├── config/         # Configuration classes
-│   │   ├── controller/     # REST API controllers
-│   │   ├── dto/           # Data Transfer Objects
-│   │   ├── exception/      # Exception handlers
-│   │   ├── model/          # Entity models
-│   │   ├── repository/    # JPA repositories
-│   │   ├── service/       # Business logic
-│   │   └── util/          # Utilities
-│   └── pom.xml
-│
-└── hms-frontend/           # React Frontend
-    ├── src/
-    │   ├── components/    # Reusable components
-    │   ├── context/        # React contexts
-    │   ├── pages/         # Page components
-    │   ├── services/      # API services
-    │   └── App.jsx       # Main app component
-    ├── package.json
-    └── vite.config.js
+|-- hms-backend/
+|   |-- src/main/java/com/hms/
+|   |   |-- ai/                 # AI assistant, chat, voice guidance
+|   |   |-- config/             # Security, JWT, CORS, WebSocket, seed data
+|   |   |-- controller/         # REST API controllers
+|   |   |-- dto/                # Request/response DTOs
+|   |   |-- exception/          # Global and domain exception handling
+|   |   |-- model/              # JPA entities
+|   |   |-- repository/         # Spring Data repositories
+|   |   |-- service/            # Business logic
+|   |   `-- util/               # Shared utilities
+|   |-- src/main/resources/
+|   |   `-- application.properties
+|   |-- pom.xml
+|   `-- mvnw.cmd
+|
+|-- hms-frontend/
+|   |-- src/
+|   |   |-- components/         # Layout, navigation, shared UI
+|   |   |-- context/            # Auth and real-time providers
+|   |   |-- features/
+|   |   |   `-- ai-assistant/
+|   |   |-- pages/              # Core HMS pages
+|   |   |-- services/           # API client wrappers
+|   |   |-- App.jsx
+|   |   `-- main.jsx
+|   |-- package.json
+|   `-- vite.config.js
+|
+|-- .env.example
+|-- AI_ARCHITECTURE_EXTENSION.md
+|-- AI_MEDICAL_ASSISTANT_README.md
+|-- POSTURE_TRACKING_README.md
+|-- WEBAR_ANATOMY_README.md
+`-- README.md
 ```
 
-## Role-Based Access Control
+## Role-Based Access
 
-| Feature | Admin | Doctor | Receptionist | Patient |
-|---------|-------|--------|-------------|---------|
-| Dashboard | ✓ | ✓ | ✓ | ✓ |
-| Doctors | ✓ | ✓ | ✓ | ✗ |
-| Patients | ✓ | ✗ | ✓ | ✗ |
-| Appointments | ✓ | ✓ | ✓ | ✓ |
-| Medical Records | ✓ | ✓ | ✓ | ✓ |
-| Billing | ✓ | ✗ | ✓ | ✗ |
-| User Management | ✓ | ✗ | ✗ | ✗ |
+The table below summarizes high-level page/module access. Some backend actions are more specific: for example, user management is admin-only, bill creation and payment collection are admin/receptionist-only, and medical record creation/update is doctor-only.
+
+| Module | Admin | Doctor | Receptionist | Patient |
+| --- | --- | --- | --- | --- |
+| Dashboard | Yes | Yes | Yes | Yes |
+| Doctors | Yes | Yes | Yes | Yes |
+| Patients | Yes | Yes | Yes | Yes |
+| Appointments | Yes | Yes | Yes | Yes |
+| Medical Records | Yes | Yes | Yes | Limited |
+| Bills | Yes | Limited | Yes | Limited |
+| User Management | Yes | No | No | No |
+| AI Assistant | Yes | Yes | No | Yes |
+
+## Application Routes
+
+| Route | Description |
+| --- | --- |
+| `/login` | Login page with demo credential support |
+| `/register` | User registration |
+| `/dashboard` | Main dashboard |
+| `/doctors` | Doctor list and management |
+| `/patients` | Patient list and management |
+| `/appointments` | Appointment booking and tracking |
+| `/medical-records` | Visit records and prescriptions |
+| `/bills` | Bills and payment history |
+| `/users` | Admin user management |
+| `/ai-assistant` | AI medical assistant chat |
 
 ## Getting Started
 
 ### Prerequisites
+
 - Java 17 or higher
 - Node.js 18 or higher
-- Maven 3.9+
+- Maven 3.9 or the included Maven Wrapper
 
-### Backend Setup
+### Environment Setup
 
-1. Navigate to the backend directory:
+Copy `.env.example` to `.env` and update values as needed:
+
 ```bash
-cd hms-backend
+GROQ_API_KEY=your-groq-api-key
+OPENAI_API_KEY=your-openai-api-key
+SPRING_DATASOURCE_URL=jdbc:h2:mem:hms_db
+SPRING_DATASOURCE_USERNAME=sa
+SPRING_DATASOURCE_PASSWORD=
+APP_JWT_SECRET=your-super-secret-jwt-key-min-512-bits
+APP_JWT_EXPIRATION_MS=86400000
+SERVER_PORT=8081
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://localhost:5174,http://localhost:3000
 ```
 
-2. Run the backend:
-```bash
-# Windows
-mvnw.cmd spring-boot:run
+The application can run without external AI keys, but AI assistant features require a Groq or OpenAI key to work fully.
 
-# Linux/Mac
+### Run the Backend
+
+```bash
+cd hms-backend
+mvnw.cmd spring-boot:run
+```
+
+On Linux or macOS:
+
+```bash
+cd hms-backend
 ./mvnw spring-boot:run
 ```
 
-The backend will start on **http://localhost:8081/api**
+Backend base URL:
 
-### Frontend Setup
+```text
+http://localhost:8081/api
+```
 
-1. Navigate to the frontend directory:
+Swagger UI:
+
+```text
+http://localhost:8081/api/swagger-ui.html
+```
+
+H2 Console:
+
+```text
+http://localhost:8081/api/h2-console
+```
+
+### Run the Frontend
+
 ```bash
 cd hms-frontend
-```
-
-2. Install dependencies (first time only):
-```bash
 npm install
-```
-
-3. Start the development server:
-```bash
 npm run dev
 ```
 
-The frontend will start on **http://localhost:5173**
+Frontend URL:
+
+```text
+http://localhost:5173
+```
 
 ## Running Both Servers
 
-Open two separate terminals:
+Open two terminals from the project root.
 
-**Terminal 1 - Backend:**
+Backend:
+
 ```bash
 cd hms-backend
 mvnw.cmd spring-boot:run
 ```
 
-**Terminal 2 - Frontend:**
+Frontend:
+
 ```bash
 cd hms-frontend
-npm install  # only first time
+npm install
 npm run dev
 ```
 
-Then open **http://localhost:5173** in your browser.
+Then open `http://localhost:5173` in the browser.
 
 ## Demo Credentials
 
-After starting the application, sample data is initialized automatically:
+Sample data is initialized automatically when the backend starts.
 
 | Role | Username | Password |
-|------|----------|----------|
-| Admin | admin | admin123 |
-| Receptionist | receptionist | recep123 |
-| Doctor | dr.rajesh | doctor123 |
-| Patient | rahul | patient123 |
+| --- | --- | --- |
+| Admin | `admin` | `admin123` |
+| Receptionist | `receptionist` | `recep123` |
+| Doctor | `dr.rajesh` | `doctor123` |
+| Patient | `rahul` | `patient123` |
 
-## API Endpoints
+The login page includes demo credential cards that can fill the username and password quickly.
+
+## API Overview
+
+The backend uses `server.servlet.context-path=/api`, so core endpoints are served under `http://localhost:8081/api`.
 
 ### Authentication
-- `POST /api/auth/login` - User login
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/change-password` - Change password
-- `GET /api/auth/me` - Get current user
+
+- `POST /api/auth/login`
+- `POST /api/auth/register`
+- `POST /api/auth/change-password`
+- `GET /api/auth/me`
 
 ### Users
-- `GET /api/users` - Get all users (Admin only)
-- `GET /api/users/{id}` - Get user by ID
-- `PUT /api/users/{id}` - Update user
-- `PATCH /api/users/{id}/toggle-status` - Toggle user status
+
+- `GET /api/users`
+- `GET /api/users/role/{role}`
+- `GET /api/users/{id}`
+- `PUT /api/users/{id}`
+- `PATCH /api/users/{id}/toggle-status`
+- `DELETE /api/users/{id}`
 
 ### Doctors
-- `GET /api/doctors` - Get all doctors
-- `GET /api/doctors/search?name=` - Search doctors
-- `GET /api/doctors/specializations` - Get all specializations
-- `POST /api/doctors` - Create doctor (Admin/Receptionist)
-- `PUT /api/doctors/{id}` - Update doctor
+
+- `GET /api/doctors`
+- `GET /api/doctors/{id}`
+- `GET /api/doctors/user/{userId}`
+- `GET /api/doctors/specialization/{specialization}`
+- `GET /api/doctors/search?name={name}`
+- `GET /api/doctors/specializations`
+- `POST /api/doctors`
+- `PUT /api/doctors/{id}`
+- `PATCH /api/doctors/{id}/status?status={status}`
 
 ### Patients
-- `GET /api/patients` - Get all patients (Admin/Receptionist/Doctor)
-- `GET /api/patients/search?name=` - Search patients
-- `POST /api/patients` - Create patient
-- `PUT /api/patients/{id}` - Update patient
+
+- `GET /api/patients`
+- `GET /api/patients/{id}`
+- `GET /api/patients/user/{userId}`
+- `GET /api/patients/search?name={name}`
+- `POST /api/patients`
+- `PUT /api/patients/{id}`
+- `PATCH /api/patients/{id}/status?status={status}`
 
 ### Appointments
-- `GET /api/appointments` - Get all appointments
-- `POST /api/appointments` - Create appointment
-- `PATCH /api/appointments/{id}/status` - Update appointment status
-- `DELETE /api/appointments/{id}` - Cancel appointment
+
+- `GET /api/appointments`
+- `GET /api/appointments/{id}`
+- `GET /api/appointments/patient/{patientId}`
+- `GET /api/appointments/doctor/{doctorId}`
+- `GET /api/appointments/doctor/{doctorId}/date/{date}`
+- `GET /api/appointments/status/{status}`
+- `POST /api/appointments`
+- `PATCH /api/appointments/{id}/status`
+- `DELETE /api/appointments/{id}`
 
 ### Medical Records
-- `GET /api/medical-records/patient/{id}` - Get patient records
-- `POST /api/medical-records` - Create medical record (Doctor only)
-- `PUT /api/medical-records/{id}` - Update medical record
+
+- `GET /api/medical-records/{id}`
+- `GET /api/medical-records/appointment/{appointmentId}`
+- `GET /api/medical-records/patient/{patientId}`
+- `GET /api/medical-records/doctor/{doctorId}`
+- `POST /api/medical-records`
+- `PUT /api/medical-records/{id}`
 
 ### Bills
-- `GET /api/bills` - Get all bills (Admin/Receptionist)
-- `GET /api/bills/status/{status}` - Get bills by status
-- `POST /api/bills` - Generate bill (Admin/Receptionist)
-- `POST /api/bills/{id}/payments` - Record payment (Admin/Receptionist)
+
+- `GET /api/bills`
+- `GET /api/bills/{id}`
+- `GET /api/bills/patient/{patientId}`
+- `GET /api/bills/status/{status}`
+- `POST /api/bills`
+- `POST /api/bills/{id}/payments`
 
 ### Dashboard
-- `GET /api/dashboard/admin` - Admin dashboard statistics
 
-## Building for Production
+- `GET /api/dashboard/admin`
+
+### AI Assistant
+
+- `POST /api/ai/chat/sessions`
+- `POST /api/ai/chat/sessions/{sessionId}/messages`
+- `GET /api/ai/chat/sessions/{sessionId}/history`
+- `GET /api/ai/chat/sessions`
+- `PATCH /api/ai/chat/sessions/{sessionId}/end`
+- `DELETE /api/ai/chat/sessions/{sessionId}`
+- `POST /api/ai/educational`
+- `POST /api/ai/rehabilitation/guide`
+- `GET /api/ai/rehabilitation/categories`
+
+## Production Build
 
 ### Backend
+
 ```bash
 cd hms-backend
 mvnw.cmd clean package
@@ -237,32 +334,48 @@ java -jar target/hms-backend-1.0.0.jar
 ```
 
 ### Frontend
+
 ```bash
 cd hms-frontend
 npm run build
+npm run preview
 ```
 
-The built files will be in the `dist` folder.
+The production frontend files are generated in `hms-frontend/dist`.
 
-## Configuration
+## Configuration Notes
 
-### Backend Configuration
-Edit `src/main/resources/application.properties` to modify:
-- Server port
-- Database settings
-- JWT secret and expiration
-- CORS settings
+Backend configuration is in:
 
-### Frontend Configuration
-Edit `src/services/api.js` to change the API base URL if needed:
+```text
+hms-backend/src/main/resources/application.properties
+```
+
+Common settings include:
+
+- Server port and `/api` context path.
+- H2 database connection.
+- JWT secret and expiration.
+- CORS origins.
+- Groq and OpenAI provider keys.
+- AI assistant prompt, rate limits, and conversation history limits.
+
+Frontend API configuration is in:
+
+```text
+hms-frontend/src/services/api.js
+```
+
+Default frontend API base URL:
+
 ```javascript
 const API_BASE_URL = 'http://localhost:8081/api/';
 ```
 
-## Quick Access Demo
+## Supporting Documentation
 
-On the login page, you can click on the demo credential cards to quickly fill in the username and password, then click "Sign In" to login.
+- `AI_MEDICAL_ASSISTANT_README.md`
 
 ## License
 
-This project is for educational purposes.
+This project is intended for educational and demonstration purposes.
