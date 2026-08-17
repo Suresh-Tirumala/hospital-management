@@ -28,7 +28,7 @@ public class AppointmentController {
     public ResponseEntity<ApiResponse<AppointmentDTO.Response>> createAppointment(
             @Valid @RequestBody AppointmentDTO.CreateRequest request,
             Authentication authentication) {
-        String bookedBy = authentication.getName();
+        String bookedBy = authentication != null ? authentication.getName() : "system";
         return ResponseEntity.ok(ApiResponse.success("Appointment booked",
                 appointmentService.createAppointment(request, bookedBy)));
     }

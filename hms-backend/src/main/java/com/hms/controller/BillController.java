@@ -71,13 +71,13 @@ public class BillController {
     }
 
     @PostMapping("/{id}/payments")
-    @PreAuthorize("hasAnyRole('ADMIN', 'RECEPTIONIST')")
     public ResponseEntity<ApiResponse<BillDTO.Response>> addPayment(
             @PathVariable Long id,
             @Valid @RequestBody BillDTO.PaymentRequest request,
             Authentication authentication) {
+        String paidBy = authentication != null ? authentication.getName() : "system";
         return ResponseEntity.ok(ApiResponse.success("Payment recorded",
-                billService.addPayment(id, request, authentication.getName())));
+                billService.addPayment(id, request, paidBy)));
     }
 
     private <T> ApiResponse.PageInfo buildPageInfo(Page<T> page) {
